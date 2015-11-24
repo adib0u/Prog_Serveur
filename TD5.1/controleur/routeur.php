@@ -9,7 +9,13 @@ class Routeur {
  
 
   public function __construct() {
-    $this->ctrlAuthentification= new ControleurAuthentification();
+  	if (isset($_GET['login']) && isset($_GET['password'])) {
+  		$this->ctrlAuthentification= new ControleurAuthentification($_GET['login'],$_GET['password']);
+  	}else{
+  		$this->ctrlAuthentification= new ControleurAuthentification();
+  	}
+
+    
   }
 
   // Traite une requête entrante
